@@ -15,5 +15,8 @@
 	</a>
 </p>
 
+```solidity
+  function getDocument(bytes32 _name) external view returns (string memory, bytes32);
+
 
 
