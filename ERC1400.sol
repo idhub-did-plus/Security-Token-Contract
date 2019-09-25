@@ -1,3 +1,4 @@
+```solidity
 pragma solidity ^0.5.0;
 
 import "./IERC1400.sol";
@@ -800,4 +801,5 @@ contract ERC1400 is IERC1400  {
 //     return _PartitionwithLock[_partition];
 //   }
 }
+```
 
