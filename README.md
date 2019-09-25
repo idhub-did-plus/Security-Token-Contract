@@ -9,7 +9,7 @@
 		<img src="https://img.shields.io/codecov/c/github/vuejs/vue/dev.svg" alt="Coverage Status">
 	</a>
 	<a href="https://www.npmjs.com/package/vue">
-		<img src="https://img.shields.io/npm/l/vue.svg" alt="License">
+		<img src="https://img.shields.io/badge/version-1.0.0-green" alt="License">
 	</a>
 	<a href="https://chat.vuejs.org/">
 		<img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="License">
