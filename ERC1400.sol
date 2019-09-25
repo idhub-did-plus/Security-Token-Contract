@@ -800,3 +800,4 @@ contract ERC1400 is IERC1400  {
 //     return _PartitionwithLock[_partition];
 //   }
 }
+
