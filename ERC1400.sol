@@ -1,10 +1,8 @@
 pragma solidity ^0.5.0;
 
-
 import "./IERC1400.sol";
 import "./SafeMath.sol";
 import "./whitelist.sol";
-
 
 /**
  * @title ERC1400
