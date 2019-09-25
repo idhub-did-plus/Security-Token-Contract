@@ -688,6 +688,7 @@ contract ERC1400 is IERC1400  {
     require(wl.FindPersonal(_from) == true);
     require(wl.FindPersonal(_to) == true);
     // require(now >=Lockdata);
+    require(_isMultiple(_value));
     require(_balanceOfByPartition[_from][_fromPartition] >= _value, "A4"); // Transfer Blocked - Sender balance insufficient
 
     bytes32 toPartition = _fromPartition;
@@ -801,5 +802,3 @@ contract ERC1400 is IERC1400  {
 //     return _PartitionwithLock[_partition];
 //   }
 }
-
-
