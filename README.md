@@ -25,14 +25,27 @@
 ```solidity
 function getDocument(bytes32 _name) external view returns (string memory, bytes32);
 ```
-* func  : `setDocument`：将文档与令牌关联
-* param : `_name`:文档名字
-* param : `_uri` :文档链接
-* param : `_documentHash`:文档哈希值
+* func   : `setDocument`：将文档与令牌关联
+* param  : `_name`:文档名字
+* param  : `_uri` :文档链接
+* param  : `_documentHash`:文档哈希值
 ```solidity
 function setDocument(bytes32 _name, string calldata _uri, bytes32 _documentHash) external;
 ```
-
+#### 2.Token Information->令牌信息
+* func   : `balanceOfByPartition`：查看持有人某个分区下令牌的余额
+* param  : `_partition` : 分区
+* param  : `_tokenHolder` : 持有人地址
+* return : 返回当前地址下某分区令牌的余额
+```solidity
+function balanceOfByPartition(bytes32 _partition, address _tokenHolder) external view returns (uint256);
+```
+* func   : `partitionsOf`：获取令牌持有人的分区索引
+* param  : `_tokenHolder` : 持有人地址
+* return : 返回令牌持有人的分区集合
+```solidity
+function partitionsOf(address _tokenHolder) external view returns (bytes32[] memory);
+```
 
 
 
