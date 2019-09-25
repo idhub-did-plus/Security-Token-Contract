@@ -5,11 +5,8 @@
 	<a href="https://circleci.com/gh/vuejs/vue/tree/dev">
 		<img src="https://img.shields.io/badge/PDF-%E5%9F%BA%E9%87%91%E6%A8%A1%E5%9E%8B-orange" alt="Build Status">
 	</a>
-	<a href="https://codecov.io/github/vuejs/vue?branch=dev">
-		<img src="https://img.shields.io/codecov/c/github/vuejs/vue/dev.svg" alt="Coverage Status">
-	</a>
 	<a href="https://www.npmjs.com/package/vue">
-		<img src="https://img.shields.io/badge/version-1.0.0-green" alt="License">
+		<img src="https://img.shields.io/badge/%E7%89%88%E6%9C%AC-1.0.0-green" alt="License">
 	</a>
 	<a href="https://chat.vuejs.org/">
 		<img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="License">
