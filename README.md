@@ -67,7 +67,7 @@ function transferByPartition(bytes32 _partition, address _to, uint256 _value, by
 ```solidity
 function operatorTransferByPartition(bytes32 _partition, address _from, address _to, uint256 _value, bytes calldata _data, bytes calldata  _operatorData) external returns (bytes32);
 ```
-#### 4.Controller Operation->权限操作
+#### 4.Controller Operation->控制操作
 * func   : `isControllable`：显示令牌是否仍然可以由操作者控制
 * return : 是或否
 ```solidity
@@ -83,7 +83,7 @@ function isControllable() external view returns (bool);
 ```solidity
 function controllerTransfer(bytes32 _partition,address _from, address _to, uint256 _value, bytes calldata _data, bytes calldata _operatorData) external;
 ```
-* func   : `controllerRedeem`：令牌赎回控制(令牌发布者或具备公信力的法律机构执行)
+* func   : `controllerRedeem`：令牌赎回控制(令牌发布者或具备公信力的法律机构执行)，经此操作令牌的总量会减少
 * param  : `_partition` : 分区
 * param  : `_tokenHolder` : 持有者地址
 * param  : `_value` : 令牌交易数量
@@ -91,6 +91,17 @@ function controllerTransfer(bytes32 _partition,address _from, address _to, uint2
 * param  : `_operatorData` : 操作者随附于交易的信息
 ```solidity
 function controllerRedeem(bytes32 _partition,address _tokenHolder, uint256 _value, bytes calldata _data, bytes calldata _operatorData) external;
+```
+#### 5.Operator Management->操作者管理
+* func   : `authorizeOperator`：授权操作者拥有与所有者一样交易及赎回的权利
+* param  : `_operator` : 操作者地址
+```solidity
+function authorizeOperator(address _operator) external;
+```
+* func   : `revokeOperator`：删除操作者拥有与所有者一样交易及赎回的权利
+* param  : `_operator` : 操作者地址
+```solidity
+function revokeOperator(address _operator) external;
 ```
 
 
