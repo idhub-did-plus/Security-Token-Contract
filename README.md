@@ -9,7 +9,7 @@
 		<img src="https://img.shields.io/badge/%E7%89%88%E6%9C%AC-1.0.0-green" alt="License">
 	</a>
 	<a href="https://chat.vuejs.org/">
-		<img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="License">
+		<img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-IDHub-blue" alt="License">
 	</a>
 </p>
 
