@@ -1,5 +1,5 @@
-# Security-Token-Contract
-Security Token Contract  implementation based on ERC1400
+# IdHub-Security-Token-Service
+
 
 ## Security Token Contract On Ropsten
 |      CONTRACT       |   ADDRESS   | 
