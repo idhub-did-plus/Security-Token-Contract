@@ -1,10 +1,7 @@
-
 pragma solidity^0.5.0;
-
 
 contract whitelist {
     
-
     address[] PersonalAdd;
     address owner;
        
@@ -23,10 +20,10 @@ contract whitelist {
     
     uint time = 1 days;
     
- /**
-  * @dev Add address to the whitelist
-  * @param _personal is address about KYC accredited.
-  */
+   /**
+   * @dev Add address to the whitelist
+   * @param _personal is address about KYC accredited.
+   */
     
     function AddPersonal(address _personal) public onlyOwner {
         
@@ -35,10 +32,10 @@ contract whitelist {
         
     }
     
- /**
-  * @dev revoke address to the whitelist
-  * @param _personal is address.
-  */ 
+   /**
+   * @dev revoke address to the whitelist
+   * @param _personal is address.
+   */ 
   
     function RevokePersonal(address _personal) public onlyOwner {
         
@@ -51,10 +48,10 @@ contract whitelist {
         
     }
     
- /**
-  * @dev find address to the whitelist
-  * @param _personal is address.
-  */ 
+   /**
+   * @dev find address to the whitelist
+   * @param _personal is address.
+   */ 
   
     function FindPersonal(address _personal) public view returns(bool) {
         
@@ -66,9 +63,9 @@ contract whitelist {
         return false;
     }
 //  /**
-//   * @dev Computational Lock
-//   * @param _data is Lockdata.
-//   */ 
+//  * @dev Computational Lock
+//  * @param _data is Lockdata.
+//  */ 
   
 //     function getdata(uint _data) public returns(uint256 Lockdata){
 //         uint Lockwithdata = now + time*_data;
