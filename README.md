@@ -14,9 +14,8 @@
 		<img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-IDHub-blue" alt="License">
 	</a>
 </p>
-
 ```solidity
   function getDocument(bytes32 _name) external view returns (string memory, bytes32);
-
+```
 
 
