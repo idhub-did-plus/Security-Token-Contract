@@ -62,10 +62,35 @@ function transferByPartition(bytes32 _partition, address _to, uint256 _value, by
 * param  : `_to` : 令牌接收者
 * param  : `_value` : 令牌交易数量
 * param  : `_data` : 代币持有者随附于交易的信息
-* param  : `_operatorData` : 操作员随附于交易的信息
+* param  : `_operatorData` : 操作者随附于交易的信息
 * return : 目标分区
 ```solidity
 function operatorTransferByPartition(bytes32 _partition, address _from, address _to, uint256 _value, bytes calldata _data, bytes calldata  _operatorData) external returns (bytes32);
+```
+#### 4.Controller Operation->权限操作
+* func   : `isControllable`：显示令牌是否仍然可以由操作者控制
+* return : 是或否
+```solidity
+function isControllable() external view returns (bool);
+```
+* func   : `controllerTransfer`：令牌交易控制(令牌发布者或具备公信力的法律机构执行)
+* param  : `_partition` : 分区
+* param  : `_from` : 令牌持有者
+* param  : `_to` : 令牌接收者
+* param  : `_value` : 令牌交易数量
+* param  : `_data` : 代币持有者随附于交易的信息
+* param  : `_operatorData` : 操作者随附于交易的信息
+```solidity
+function controllerTransfer(bytes32 _partition,address _from, address _to, uint256 _value, bytes calldata _data, bytes calldata _operatorData) external;
+```
+* func   : `controllerRedeem`：令牌赎回控制(令牌发布者或具备公信力的法律机构执行)
+* param  : `_partition` : 分区
+* param  : `_tokenHolder` : 持有者地址
+* param  : `_value` : 令牌交易数量
+* param  : `_data` : 代币持有者随附于交易的信息
+* param  : `_operatorData` : 操作者随附于交易的信息
+```solidity
+function controllerRedeem(bytes32 _partition,address _tokenHolder, uint256 _value, bytes calldata _data, bytes calldata _operatorData) external;
 ```
 
 
