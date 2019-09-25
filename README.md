@@ -33,18 +33,39 @@ function getDocument(bytes32 _name) external view returns (string memory, bytes3
 function setDocument(bytes32 _name, string calldata _uri, bytes32 _documentHash) external;
 ```
 #### 2.Token Information->令牌信息
-* func   : `balanceOfByPartition`：查看持有人某个分区下令牌的余额
+* func   : `balanceOfByPartition`：查看持有者某个分区下令牌的余额
 * param  : `_partition` : 分区
-* param  : `_tokenHolder` : 持有人地址
+* param  : `_tokenHolder` : 持有者地址
 * return : 返回当前地址下某分区令牌的余额
 ```solidity
 function balanceOfByPartition(bytes32 _partition, address _tokenHolder) external view returns (uint256);
 ```
-* func   : `partitionsOf`：获取令牌持有人的分区索引
-* param  : `_tokenHolder` : 持有人地址
-* return : 返回令牌持有人的分区集合
+* func   : `partitionsOf`：获取令牌持有者的分区索引
+* param  : `_tokenHolder` : 持有者地址
+* return : 返回令牌持有者的分区集合
 ```solidity
 function partitionsOf(address _tokenHolder) external view returns (bytes32[] memory);
+```
+#### 3.Partition Token Transfers->令牌交易
+* func   : `transferByPartition`：分区令牌交易(本人执行)
+* param  : `_partition` : 分区
+* param  : `_to` : 令牌接收者
+* param  : `_value` : 令牌交易数量
+* param  : `_data` : 代币持有者随附于交易的信息
+* return : 目标分区
+```solidity
+function transferByPartition(bytes32 _partition, address _to, uint256 _value, bytes calldata _data) external returns(bytes32);
+```
+* func   : `operatorTransferByPartition`：分区令牌交易(操作者执行)
+* param  : `_partition` : 分区
+* param  : `_from` : 令牌持有者
+* param  : `_to` : 令牌接收者
+* param  : `_value` : 令牌交易数量
+* param  : `_data` : 代币持有者随附于交易的信息
+* param  : `_operatorData` : 操作员随附于交易的信息
+* return : 目标分区
+```solidity
+function operatorTransferByPartition(bytes32 _partition, address _from, address _to, uint256 _value, bytes calldata _data, bytes calldata  _operatorData) external returns (bytes32);
 ```
 
 
