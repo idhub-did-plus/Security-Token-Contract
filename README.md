@@ -23,7 +23,7 @@
 * param :`_name`:文档名字
 * return:返回与令牌相关的文档链接和文档哈希值
 ```solidity
-  function getDocument(bytes32 _name) external view returns (string memory, bytes32);
+function getDocument(bytes32 _name) external view returns (string memory, bytes32);
 ```
 * func  :`setDocument`：将文档与令牌关联
 * param :`_name`:文档名字
