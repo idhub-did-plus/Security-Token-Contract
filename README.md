@@ -19,6 +19,7 @@
 
 ## 接口说明
 * 1.Document Management
+** 参数:_name:文件名字
 ```solidity
   function getDocument(bytes32 _name) external view returns (string memory, bytes32);
 ```
