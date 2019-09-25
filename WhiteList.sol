@@ -1,3 +1,4 @@
+```solidity
 pragma solidity^0.5.0;
 
 contract whitelist {
@@ -73,3 +74,4 @@ contract whitelist {
 //         return Lockdata;
 //     }
 }
+```
