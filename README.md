@@ -86,23 +86,141 @@ function controllerTransfer(bytes32 _partition,address _from, address _to, uint2
 * func   : `controllerRedeem`：令牌赎回控制(令牌发布者或具备公信力的法律机构执行)，经此操作令牌的总量会减少
 * param  : `_partition` : 分区
 * param  : `_tokenHolder` : 持有者地址
-* param  : `_value` : 令牌交易数量
+* param  : `_value` : 令牌赎回数量
 * param  : `_data` : 代币持有者随附于交易的信息
 * param  : `_operatorData` : 操作者随附于交易的信息
 ```solidity
 function controllerRedeem(bytes32 _partition,address _tokenHolder, uint256 _value, bytes calldata _data, bytes calldata _operatorData) external;
 ```
 #### 5.Operator Management->操作者管理
-* func   : `authorizeOperator`：授权操作者拥有与所有者一样交易及赎回的权利
+* func   : `authorizeOperator`：授权操作者拥有与所有者(所有分区)一样交易及赎回的权利,
 * param  : `_operator` : 操作者地址
 ```solidity
 function authorizeOperator(address _operator) external;
 ```
-* func   : `revokeOperator`：删除操作者拥有与所有者一样交易及赎回的权利
+* func   : `revokeOperator`：删除操作者拥有与所有者(所有分区)一样交易及赎回的权利
 * param  : `_operator` : 操作者地址
 ```solidity
 function revokeOperator(address _operator) external;
 ```
-
-
+* func   : `authorizeOperatorByPartition`：授权操作者拥有与所有者(某个分区)一样交易及赎回的权利
+* param  : `_operator` : 操作者地址
+```solidity
+function authorizeOperatorByPartition(bytes32 _partition, address _operator) external;
+```
+* func   : `revokeOperator`：删除操作者拥有与所有者(某个分区)一样交易及赎回的权利
+* param  : `_operator` : 操作者地址
+```solidity
+function revokeOperatorByPartition(bytes32 _partition, address _operator) external;
+```
+#### 6.Operator Information->操作者信息
+* func   : `isOperator`：判断当前`_operator`是否是`_tokenHolder`所有分区的操作者
+* param  : `_operator` : 操作者地址
+* param  : `_tokenHolder` : 持有者地址
+* return : 是或否
+```solidity
+function isOperator(address _operator, address _tokenHolder) external view returns (bool);
+```
+* func   : `isOperatorForPartition`：判断当前`_operator`是否是`_tokenHolder`某个分区的操作者
+* param  : `_partition` : 分区
+* param  : `_operator` : 操作者地址
+* param  : `_tokenHolder` : 持有者地址
+* return : 是或否
+```solidity
+function isOperatorForPartition(bytes32 _partition, address _operator, address _tokenHolder) external view returns (bool);
+```
+#### 7.Token Issuance->令牌发行
+* func   : `isIssuable`：未来是否可以发行新的令牌
+* return : 是或否
+```solidity
+function isIssuable() external view returns (bool);
+```
+* func   : `issueByPartition`：特定分区发行令牌
+* param  : `_partition` : 分区
+* param  : `_tokenHolder` : 持有者地址
+* param  : `_value` : 令牌发行数量
+* param  : `_data` : 随附于交易的信息
+* param  : `_Day` : 锁仓期时长
+```solidity
+function issueByPartition(bytes32 _partition, address _tokenHolder, uint256 _value, bytes calldata _data,uint _Day) external;
+```
+#### 8.Token Redemption->令牌赎回
+* func   : `redeemByPartition`：赎回某个分区下令牌
+* param  : `_partition` : 分区
+* param  : `_value` : 令牌赎回数量
+* param  : `_data` : 随附于赎回的信息
+```solidity
+function redeemByPartition(bytes32 _partition, uint256 _value, bytes calldata  _data) external;
+```
+* func   : `operatorRedeemByPartition`：操作者赎回某个分区下令牌
+* param  : `_partition` : 分区
+* param  : `_tokenHolder` : 持有者地址
+* param  : `_value` : 令牌赎回数量
+* param  : `_data` : 随附于赎回的信息
+* param  : `_operatorData` : 操作者随附于赎回的信息
+```solidity
+function operatorRedeemByPartition(bytes32 _partition, address _tokenHolder, uint256 _value,bytes calldata _data,bytes calldata _operatorData) external;
+```
+#### 9.Transfer Validity->交易验证
+* func   : `canTransferByPartition`：判断交易是否能够执行
+* param  : `_partition` : 分区
+* param  : `_from` : 令牌持有者
+* param  : `_to` : 令牌接收者
+* param  : `_value` : 令牌预交易数量
+* param  : `_data` : 代币持有者随附于交易的信息
+* return : `ERC1066`的返回码、空、分区
+```solidity
+function canTransferByPartition(bytes32 _partition,address _from, address _to, uint256 _value, bytes calldata _data) external view returns(byte, bytes32, bytes32);
+```
+#### 10.Events->事件列表
+* event  : `ControllerTransfer` : 监听`ControllerTransfer`
+* param  : 所有参数与原函数参数相同
+```solidity
+event ControllerTransfer(address _controller,address indexed _from,address indexed _to,uint256 _value,bytes    _data,bytes_operatorData);
+```
+* event  : `ControllerRedemption` : 监听`ControllerRedemption`
+* param  : 所有参数与原函数参数相同
+```solidity
+event ControllerRedemption(address _controller,address indexed _tokenHolder,uint256 _value,bytes _data,bytes _operatorData);
+```
+* event  : `Document` : 监听`Document`
+* param  : 所有参数与原函数参数相同
+```solidity
+event Document(bytes32 indexed _name, string _uri, bytes32 _documentHash);
+```
+* event  : `TransferByPartition` : 监听`TransferByPartition`
+* param  : 所有参数与原函数参数相同
+```solidity
+event TransferByPartition(bytes32 indexed _fromPartition,address _operator,address indexed _from,address indexed _to,uint256 _value,bytes _data,bytes _operatorData);
+```
+* event  : `ChangedPartition` : 查看分区是否改变
+* param  : 所有参数与`TransferByPartition`参数相同
+```solidity
+event ChangedPartition(bytes32 indexed _fromPartition,bytes32 indexed _toPartition,uint256 _value);
+```
+* event  : `RevokedOperator` : 监听`revokeOperator`
+* param  : 所有参数与原函数参数相同
+```solidity
+event RevokedOperator(address indexed _operator, address indexed _tokenHolder);
+```
+* event  : `AuthorizedOperatorByPartition` : 监听`authorizeOperatorByPartition`
+* param  : 所有参数与原函数参数相同
+```solidity
+event AuthorizedOperatorByPartition(bytes32 indexed _partition, address indexed _operator, address indexed _tokenHolder);
+```
+* event  : `RevokedOperatorByPartition` : 监听`revokeOperatorByPartition`
+* param  : 所有参数与原函数参数相同
+```solidity
+event RevokedOperatorByPartition(bytes32 indexed _partition, address indexed _operator, address indexed _tokenHolder);
+```
+* event  : `IssuedByPartition` : 监听`issueByPartition`
+* param  : 所有参数与`issueByPartition`参数相同
+```solidity
+event IssuedByPartition(bytes32 indexed _partition, address indexed _operator, address indexed _to, uint256 _value, bytes _data, bytes _operatorData);
+```
+* event  : `RedeemedByPartition` : 监听`redeemByPartition`
+* param  : 所有参数与`redeemByPartition`参数相同
+```solidity
+event RedeemedByPartition(bytes32 indexed _partition, address indexed _operator, address indexed _from, uint256 _value, bytes _operatorData);
+```
 
