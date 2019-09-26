@@ -223,4 +223,8 @@ event IssuedByPartition(bytes32 indexed _partition, address indexed _operator, a
 ```solidity
 event RedeemedByPartition(bytes32 indexed _partition, address indexed _operator, address indexed _from, uint256 _value, bytes _operatorData);
 ```
-
+## Security Token Contract On Ropsten
+|      CONTRACT       |   ADDRESS   | 
+|  :----------------: | :---------- | 
+| whitelist           |0x992b7942da4f7193e6fd6c3ba7682c7cd6c6c6ab|
+| ERC1400             |0x060f098632c1dc21b3f380bcc299ad40299aa96e|
