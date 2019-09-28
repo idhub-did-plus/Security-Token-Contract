@@ -35,7 +35,6 @@ contract whistlist {
         _setWhitelist(tokenHolder, authorized);
     }
   /**
-   * [NOT MANDATORY FOR ERC1400ERC20 STANDARD]
    * @dev Set whitelisted status for a tokenHolder.
    * @param tokenHolder Address to add/remove from whitelist.
    * @param authorized 'true' if tokenHolder shall be added to whitelist, 'false' if not.
