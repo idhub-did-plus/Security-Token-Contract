@@ -4,6 +4,7 @@ pragma solidity ^0.5.0;
 import "./IERC1400.sol";
 import "./SafeMath.sol";
 import "./whitelist.sol";
+import "./ConfigurableComplianceService.sol";
 
 /**
  * @title ERC1400
@@ -11,7 +12,7 @@ import "./whitelist.sol";
  */
 contract ERC1400 is IERC1400  {
     
-  whitelist wl;    
+  ConfigurableComplianceService ccs; 
     
   using SafeMath for uint256;  
   
@@ -105,7 +106,7 @@ contract ERC1400 is IERC1400  {
     string memory symbol,
     uint256 decimals,
     address[] memory controllers,
-    address  whitelistaddr
+    address  ConfigurableComplianceServiceaddr
   )
     public
   {
@@ -117,7 +118,7 @@ contract ERC1400 is IERC1400  {
     _isIssuable = true;
     owner = msg.sender;
     _totalSupply = 0;
-    wl = whitelist(whitelistaddr);
+    ccs = ConfigurableComplianceService(ConfigurableComplianceServiceaddr);
     _controllers = controllers;
   }
 
@@ -363,7 +364,8 @@ contract ERC1400 is IERC1400  {
   {
     // Lockdata = wl.getdata(_Day);
     // _PartitionwithLock[_partition] = Lockdata;
-    require(wl.FindPersonal(_tokenHolder) == true);  
+    //require(wl.FindPersonal(_tokenHolder) == true); 
+    require(ccs.checkCompliance(address(this),msg.sender,_tokenHolder) ==true);
     _issueByPartition(_partition, msg.sender,_tokenHolder,_value,_data, "");
   }
   /**
@@ -467,8 +469,9 @@ contract ERC1400 is IERC1400  {
      view
      returns (byte, bytes32, bytes32)
   {
-    require(wl.FindPersonal(_from) == true,"need KYC verify");  
-    require(wl.FindPersonal(_to) == true,"need KYC verify");
+    //require(wl.FindPersonal(_from) == true,"need KYC verify");  
+    //require(wl.FindPersonal(_to) == true,"need KYC verify");
+    
      if(!_isOperatorForPartition(_partition, _operator, _from))
       return(hex"A7", "", _partition); // "Transfer Blocked - Identity restriction"
 
@@ -685,8 +688,9 @@ contract ERC1400 is IERC1400  {
     internal
     returns (bytes32)
   {
-    require(wl.FindPersonal(_from) == true);
-    require(wl.FindPersonal(_to) == true);
+    //require(wl.FindPersonal(_from) == true);
+    //require(wl.FindPersonal(_to) == true);
+    require(ccs.checkCompliance(address(this),_from,_to) == true);
     // require(now >=Lockdata);
     require(_isMultiple(_value));
     require(_balanceOfByPartition[_from][_fromPartition] >= _value, "A4"); // Transfer Blocked - Sender balance insufficient
